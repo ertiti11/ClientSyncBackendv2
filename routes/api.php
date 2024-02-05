@@ -22,6 +22,13 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 
 Route::get('/', [apiController::class, 'index']);
 
+Route::get('/unauthorized', function () {
+    return response()->json(['message' => 'Unauthorized'], 401);
+});
+
+
+Route::post('/login', [apiController::class, 'login']);
+
 Route::get('/ping', [apiController::class, 'ping']);
 
 Route::get('/clients', [apiController::class, 'clients']);

@@ -7,6 +7,7 @@ use App\Models\Client;
 use App\Models\Work;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 class apiController extends Controller
 {
     //
@@ -48,19 +49,32 @@ class apiController extends Controller
     }
 
 // funcion de login con laravel sanctum
-    public function login(){
-        $credentials = request(['email', 'password']);
-        if (!Auth::attempt($credentials)) {
-            return response()->json([
-                'message' => 'Unauthorized'
-            ], 401);
-        }
-        $user = User::where('email', $credentials['email'])->first();
-        $token = $user->createToken('authToken')->plainTextToken;
-        return response()->json([
-            'token' => $token,
-            'token_type' => 'Bearer'
-        ]);
-        
+   
+
+// haz un set cookie tambien
+public function login(Request $request){
+
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
+
+    $user = User::where('email', $request->email)->first();
+
+    if (!$user || !Hash::check($request->password, $user->password)) {
+        return response()->json(['message' => 'Unauthorized'], 401);
     }
+
+    $token = $user->createToken('my-app-token')->plainTextToken;
+
+    return response()->json(['token' => $token], 200);
+
+}
+
+
+
+
+
+
+
 }
