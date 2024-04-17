@@ -13,4 +13,12 @@ class Work extends Model
     {
         return $this->belongsTo(Client::class);
     }
+    public function invoices()
+    {
+        return $this->belongsTo(Invoice::class);
+    }
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
 }
