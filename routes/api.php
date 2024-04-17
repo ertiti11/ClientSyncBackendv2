@@ -2,8 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\apiController;
-use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\WorkController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,19 +22,40 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 
 
 
-Route::get('/', [apiController::class, 'index']);
+Route::get('/', [ClientController::class, 'index']);
 
 Route::get('/unauthorized', function () {
     return response()->json(['message' => 'Unauthorized'], 401);
 });
 
 
-Route::post('/login', [apiController::class, 'login']);
 
-Route::get('/ping', [apiController::class, 'ping']);
+// todas las rutas que crees aqui tendras /api delante
 
-Route::get('/clients', [apiController::class, 'clients']);
 
-Route::get('/jobs', [apiController::class, 'jobs']);
 
-Route::post('/registuser', [RegisteredUserController::class, 'store']);
+
+// CLIENTS
+
+Route::get('/clients', [ClientController::class, 'index']);
+
+Route::get('/updateclient', [ClientController::class, 'update']);
+
+Route::get('/deleteclient', [ClientController::class, 'delete']);
+
+
+
+
+// WORKS
+
+Route::get('/works', [WorkController::class, 'index']);
+
+Route::post('/updatework', [WorkController::class, 'update']);
+
+Route::post('/deletework', [WorkController::class, 'delete']);
+
+
+
+
+
+
