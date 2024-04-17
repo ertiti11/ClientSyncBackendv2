@@ -26,8 +26,7 @@ Route::get('/', [ClientController::class, 'index']);
 
 Route::get('/unauthorized', function () {
     return response()->json(['message' => 'Unauthorized'], 401);
-});
-
+})->name('unauthorized');
 
 
 // todas las rutas que crees aqui tendras /api delante
@@ -48,12 +47,12 @@ Route::get('/deleteclient', [ClientController::class, 'delete']);
 
 // WORKS
 
-Route::get('/works', [WorkController::class, 'index']);
-
-Route::post('/updatework', [WorkController::class, 'update']);
-
-Route::post('/deletework', [WorkController::class, 'delete']);
-
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/works', [WorkController::class, 'index']);
+    Route::post('/updatework', [WorkController::class, 'update']);
+    Route::post('/deletework', [WorkController::class, 'delete']);
+    Route::post('/creatework', [WorkController::class, 'create']);
+});
 
 
 
