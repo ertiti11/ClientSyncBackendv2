@@ -46,15 +46,19 @@ Route::get('/deleteclient', [ClientController::class, 'delete']);
 
 
 // WORKS
-
-Route::middleware('auth:sanctum')->group(function () {
+if (env('APP_ENV') === 'prod') {
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::get('/works', [WorkController::class, 'index']);
+        Route::post('/updatework', [WorkController::class, 'update']);
+        Route::post('/deletework', [WorkController::class, 'delete']);
+        Route::post('/creatework', [WorkController::class, 'create']);
+    });
+} else {
     Route::get('/works', [WorkController::class, 'index']);
     Route::post('/updatework', [WorkController::class, 'update']);
     Route::post('/deletework', [WorkController::class, 'delete']);
     Route::post('/creatework', [WorkController::class, 'create']);
-});
-
-
+}
 
 
 
