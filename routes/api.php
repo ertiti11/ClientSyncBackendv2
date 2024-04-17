@@ -48,12 +48,12 @@ Route::get('/deleteclient', [ClientController::class, 'delete']);
 
 // WORKS
 
-Route::get('/works', [WorkController::class, 'index']);
-
-Route::post('/updatework', [WorkController::class, 'update']);
-
-Route::post('/deletework', [WorkController::class, 'delete']);
-
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/works', [WorkController::class, 'index']);
+    Route::post('/updatework', [WorkController::class, 'update']);
+    Route::post('/deletework', [WorkController::class, 'delete']);
+    Route::post('/creatework', [WorkController::class, 'create']);
+});
 
 
 
