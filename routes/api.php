@@ -26,8 +26,7 @@ Route::get('/', [ClientController::class, 'index']);
 
 Route::get('/unauthorized', function () {
     return response()->json(['message' => 'Unauthorized'], 401);
-});
-
+})->name('unauthorized');
 
 
 // todas las rutas que crees aqui tendras /api delante
