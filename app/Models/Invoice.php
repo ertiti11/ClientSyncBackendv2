@@ -11,7 +11,7 @@ class Invoice extends Model
 
     public function works()
     {
-        return $this->belongsTo(Work::class);
+        return $this->hasMany(Work::class);
     }
     public function clients()
     {
