@@ -72,6 +72,30 @@ public function login(Request $request){
 }
 
 
+public function logout(Request $request)
+{
+    $request->user()->currentAccessToken()->delete();
+    return response()->json(['message' => 'Logged out'], 200);
+
+}
+
+public function register(Request $request)
+{
+    $request->validate([
+        'name' => 'required',
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
+
+    $user = new User();
+    $user->name = $request->name;
+    $user->email = $request->email;
+    $user->password = Hash::make($request->password);
+    $user->save();
+
+    return response()->json(['message' => 'User created'], 201);
+
+}
 
 
 

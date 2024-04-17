@@ -23,26 +23,10 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('admin')
         ]);
 
+        // crealo con faker y factory
 
-        Client::create([
-            'name' => 'Juan',
-            'lastNames' => 'Perez',
-            'email' => 'juan@gmail.com',
-            'phone' => '1234567890',
-            'date' => '2022-02-02',
-            'address' => 'Calle 123',
-            'color' => 'red'
-        ]);
-
-        Work::create([
-            'title' => 'Trabajo 1',
-            'description' => 'Descripcion del trabajo 1',
-            'client_id' => 1,
-            'start_date' => '2022-02-02',
-            'end_date' => '2022-02-02',
-            'price' => 100.00,
-            'status' => 'pending'
-        ]);
+        Client::factory(10)->create();
+        Work::factory(10)->create();
 
 
 
@@ -52,3 +36,4 @@ class DatabaseSeeder extends Seeder
         // ]);
     }
 }
+

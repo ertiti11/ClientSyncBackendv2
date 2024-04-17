@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\apiController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -34,3 +35,5 @@ Route::get('/ping', [apiController::class, 'ping']);
 Route::get('/clients', [apiController::class, 'clients']);
 
 Route::get('/jobs', [apiController::class, 'jobs']);
+
+Route::post('/registuser', [RegisteredUserController::class, 'store']);
