@@ -36,11 +36,7 @@ Route::get('/unauthorized', function () {
 
 // CLIENTS
 
-Route::get('/clients', [ClientController::class, 'index']);
 
-Route::get('/updateclient', [ClientController::class, 'update']);
-
-Route::get('/deleteclient', [ClientController::class, 'delete']);
 
 
 
@@ -48,16 +44,32 @@ Route::get('/deleteclient', [ClientController::class, 'delete']);
 // WORKS
 if (env('APP_ENV') === 'prod') {
     Route::middleware('auth:sanctum')->group(function () {
+        //WORKS
         Route::get('/works', [WorkController::class, 'index']);
         Route::post('/updatework', [WorkController::class, 'update']);
         Route::post('/deletework', [WorkController::class, 'delete']);
         Route::post('/creatework', [WorkController::class, 'create']);
+        
+        //CLIENT
+        Route::get('/clients', [ClientController::class, 'index']);
+        Route::post('/updateclient', [ClientController::class, 'update']);
+        Route::post('/deleteclient', [ClientController::class, 'delete']);
+        Route::post('/createclient', [ClientController::class, 'create']);
+
     });
 } else {
+    //WORKS
     Route::get('/works', [WorkController::class, 'index']);
     Route::post('/updatework', [WorkController::class, 'update']);
     Route::post('/deletework', [WorkController::class, 'delete']);
     Route::post('/creatework', [WorkController::class, 'create']);
+
+    //CLIENT
+    Route::get('/clients', [ClientController::class, 'index']);
+    Route::post('/updateclient', [ClientController::class, 'update']);
+    Route::post('/deleteclient', [ClientController::class, 'delete']);
+    Route::post('/createclient', [ClientController::class, 'create']);
+
 }
 
 

@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // user::factory(10)->create();
+        user::factory(10)->create();
         // // añadir de manera manual un seeder de clientes y trabajos sin el metodo factory
 
         // user::create([
@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
 
         // crealo con faker y factory
 
-        // Client::factory(10)->create();
+        Client::factory(10)->create();
         Work::factory(10)->create();
 
 
